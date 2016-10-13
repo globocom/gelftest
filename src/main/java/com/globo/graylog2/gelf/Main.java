@@ -10,24 +10,24 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.apache.log4j.Logger;
 
-//import org.apache.logging.log4j.Logger;
-//import org.apache.logging.log4j.LogManager;
+//import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 
 public class Main {
 
     static final int PRINT_THREAD_COUNT_MSG = 10000;
-    public static final Logger logger = Logger.getLogger(Main.class);
-//    public static final Logger logger = LogManager.getLogger(Main.class);
+//    public static final Logger logger = Logger.getLogger(Main.class);
+
+    public static final Logger logger = LogManager.getLogger(Main.class);
 
 
     public static void main(String[] args) throws InterruptedException {
 //        BasicConfigurator.configure();
         long start = new Date().getTime();
-
-
 
         int max = 2500;
         if (args[0] != null){
@@ -51,10 +51,10 @@ public class Main {
             try {
                 MyTask task = new MyTask(t, max, bigstack);
                 tasks.add(task);
-                Thread thred=new Thread(task);
+                Thread thred = new Thread(task);
                 ths.add(thred);
                 thred.start();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 logger.error("error executing thread", e);
             }
         }
@@ -72,7 +72,7 @@ public class Main {
 
 
         printReport(max, threads, bigstack, finalDuration);
-//                logger.debug("Messages: " + max);
+//        logger.debug("Messages: " + max);
 //        logger.debug("Threads: " + threads);
     }
 
@@ -128,31 +128,35 @@ public class Main {
 
     protected static class MyTask implements Runnable {
 
-        public static final Logger logger = Logger.getLogger(MyTask.class);
-//        public static final Logger logger = LogManager.getLogger(MyTask.class);
+//        public static final Logger logger = Logger.getLogger(MyTask.class);
+        public static final Logger logger = LogManager.getLogger(MyTask.class);
 
         int max;
         long duration = 0;
         int id;
         boolean bigstack;
+
         public MyTask(int id, int max, boolean bigstack){
             this.id = id;
             this.max = max;
             this.bigstack = bigstack;
         }
+
         @Override
         public void run() {
             Exception e;
-            if (bigstack) {
-                e = createMyTerribleException();
-            }else {
-                e = new RuntimeException("short stacktrace");
-            }
+            e = createMyTerribleException();
 
-//            logger.debug("Start: " + max);
+//            if (bigstack) {
+//                e = createMyTerribleException();
+//            }else {
+//                e = new RuntimeException("short stacktrace");
+//            }
+
+            logger.debug("Start: " + max);
             long time = new Date().getTime();
             for (int i = 0; i < max; i++) {
-                logger.error("error testing log asdfgasdfgasdfgasdf", e);
+                logger.error("error testing log asaaaaaaaaaaaaaaaaaadfgasdfgasdfgasdf", e);
 //                logger2.error("error testing log asdfgasdfgasdfgasdf", e);
                 int m = i % PRINT_THREAD_COUNT_MSG;
                 if ( m == 0  ){

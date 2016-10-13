@@ -7,7 +7,9 @@
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d |%t|%c{2}|  %-5p - %m%n"/>
         </layout>
+
     </appender>
+
 
     <appender name="graylog" class="org.graylog2.log.GelfAppender">
         <param name="graylogHost" value="${type}:${ghost}"/>
