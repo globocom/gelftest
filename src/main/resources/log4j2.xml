@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="trace" packages="org.graylog2.log4j2">
+<Configuration status="off" packages="org.graylog2.log4j2">
     <Appenders>
-        <GELF name="gelfAppender" server="10.132.4.138" port="12201" hostName="sinvalneto.com">
-            <PatternLayout pattern="%msg%n"/>
+        <GELF name="gelfAppender"
+              server="${sys:ghost}"
+              port="12201"
+              hostName="maquinadolucas2.com"
+              ignoreExceptions="true"
+              includeStackTrace="false"
+              protocol="TCP">
+
+            <PatternLayout pattern="%logger{36} - %msg%n"/>
             <!--<Filters>-->
                 <!--<Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>-->
                 <!--<Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>-->
             <!--</Filters>-->
             <!--&lt;!&ndash; Additional fields &ndash;&gt;-->
-            <KeyValuePair key="foo" value="bar"/>
-            <KeyValuePair key="jvm" value="${java:vm}"/>
+
+            <KeyValuePair key="teste" value="${sys:ta}"/>
+
+
         </GELF>
     </Appenders>
     <Loggers>

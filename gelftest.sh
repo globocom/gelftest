@@ -22,4 +22,4 @@ echo messages: $messages
 echo tag: $tag
 echo bigstack: $bigstack
 
-java -Dlog4j.configuration=file:$pwd/src/main/resources/log4j2.xml -DXmx1G -DXms1G -Dghost=$ghost -Dta=$tag -Dtype=$type -jar target/gelftest.jar $messages $threads $bigstack
+java -Dlog4j.configurationFile=file:$pwd/src/main/resources/log4j2.xml -DXmx1G -DXms1G -Dghost=$ghost -Dta=$tag -Dtype=$type -jar target/gelftest.jar $messages $threads $bigstack
