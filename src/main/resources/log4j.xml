@@ -7,9 +7,7 @@
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d |%t|%c{2}|  %-5p - %m%n"/>
         </layout>
-
     </appender>
-
 
     <appender name="graylog" class="org.graylog2.log.GelfAppender">
         <param name="graylogHost" value="${type}:${ghost}"/>
@@ -31,27 +29,27 @@
     </appender>
 
     <!--<appender name="gelf" class="biz.paluch.logging.gelf.log4j.GelfLogAppender">-->
-        <!--<param name="Threshold" value="INFO" />-->
-        <!--<param name="Host" value="${type}:${ghost}" />-->
-        <!--<param name="Port" value="12201" />-->
-        <!--<param name="Version" value="1.1" />-->
-        <!--<param name="Facility" value="java-test" />-->
-        <!--<param name="ExtractStackTrace" value="true" />-->
-        <!--<param name="FilterStackTrace" value="true" />-->
-        <!--<param name="MdcProfiling" value="true" />-->
-        <!--<param name="TimestampPattern" value="yyyy-MM-dd HH:mm:ss,SSSS" />-->
-        <!--<param name="MaximumMessageSize" value="8192" />-->
-        <!--<param name="OriginHost" value="maquinadolucas.com" />-->
+    <!--<param name="Threshold" value="INFO" />-->
+    <!--<param name="Host" value="${type}:${ghost}" />-->
+    <!--<param name="Port" value="12201" />-->
+    <!--<param name="Version" value="1.1" />-->
+    <!--<param name="Facility" value="java-test" />-->
+    <!--<param name="ExtractStackTrace" value="true" />-->
+    <!--<param name="FilterStackTrace" value="true" />-->
+    <!--<param name="MdcProfiling" value="true" />-->
+    <!--<param name="TimestampPattern" value="yyyy-MM-dd HH:mm:ss,SSSS" />-->
+    <!--<param name="MaximumMessageSize" value="8192" />-->
+    <!--<param name="OriginHost" value="maquinadolucas.com" />-->
 
-        <!--&lt;!&ndash; This are static fields &ndash;&gt;-->
-        <!--<param name="AdditionalFields" value="environment=DEV,app=cloudstack-local,teste=${ta}" />-->
-        <!--&lt;!&ndash; Optional: Specify field types &ndash;&gt;-->
-        <!--<param name="AdditionalFieldTypes" value="fieldName1=String,fieldName2=Double,fieldName3=String" />-->
+    <!--&lt;!&ndash; This are static fields &ndash;&gt;-->
+    <!--<param name="AdditionalFields" value="environment=DEV,app=cloudstack-local,teste=${ta}" />-->
+    <!--&lt;!&ndash; Optional: Specify field types &ndash;&gt;-->
+    <!--<param name="AdditionalFieldTypes" value="fieldName1=String,fieldName2=Double,fieldName3=String" />-->
 
-        <!--&lt;!&ndash;&lt;!&ndash; This are fields using MDC &ndash;&gt;&ndash;&gt;-->
-        <!--&lt;!&ndash;<param name="MdcFields" value="mdcField1,mdcField2" />&ndash;&gt;-->
-        <!--&lt;!&ndash;<param name="DynamicMdcFields" value="mdc.*,(mdc|MDC)fields" />&ndash;&gt;-->
-        <!--&lt;!&ndash;<param name="IncludeFullMdc" value="true" />&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; This are fields using MDC &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;<param name="MdcFields" value="mdcField1,mdcField2" />&ndash;&gt;-->
+    <!--&lt;!&ndash;<param name="DynamicMdcFields" value="mdc.*,(mdc|MDC)fields" />&ndash;&gt;-->
+    <!--&lt;!&ndash;<param name="IncludeFullMdc" value="true" />&ndash;&gt;-->
     <!--</appender>-->
 
     <root>

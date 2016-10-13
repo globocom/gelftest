@@ -8,16 +8,9 @@
               ignoreExceptions="false"
               includeStackTrace="false"
               protocol="${sys:type}"
-              queueSize="1000"
-                >
+              queueSize="1000">
 
             <PatternLayout pattern="%logger{36} - %msg%n"/>
-            <!--<Filters>-->
-                <!--<Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>-->
-                <!--<Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>-->
-            <!--</Filters>-->
-            <!--&lt;!&ndash; Additional fields &ndash;&gt;-->
-
             <KeyValuePair key="teste" value="${sys:ta}"/>
 
 
