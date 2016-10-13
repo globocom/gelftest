@@ -5,9 +5,11 @@
               server="${sys:ghost}"
               port="12201"
               hostName="maquinadolucas2.com"
-              ignoreExceptions="true"
+              ignoreExceptions="false"
               includeStackTrace="false"
-              protocol="TCP">
+              protocol="${sys:type}"
+              queueSize="1000"
+                >
 
             <PatternLayout pattern="%logger{36} - %msg%n"/>
             <!--<Filters>-->
