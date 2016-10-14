@@ -10,24 +10,27 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.apache.log4j.Logger;
-
-//import org.apache.logging.log4j.Logger;
-//import org.apache.logging.log4j.LogManager;
 
 
 public class Main {
 
     static final int PRINT_THREAD_COUNT_MSG = 10000;
-    public static final Logger logger = Logger.getLogger(Main.class);
-//    public static final Logger logger = LogManager.getLogger(Main.class);
 
+    public static final org.apache.log4j.Logger log4j1Logger = org.apache.log4j.Logger.getLogger(Main.class);
+    public static final org.apache.log4j.Logger log4j2Logger = org.apache.log4j.Logger.getLogger(Main.class);
+//    public static final org.apache.logging.log4j.Logger log4j2Logger = org.apache.logging.log4j.LogManager.getLogger(Main.class);
+//    public static final org.apache.logging.log4j.Logger log4j1Logger = org.apache.logging.log4j.LogManager.getLogger(Main.class);
+
+    public static void logError(int log4jVersion, String msg) {
+        if (log4jVersion == 1) {
+            log4j1Logger.error(msg);
+        } else {
+            log4j2Logger.error(msg);
+        }
+    }
 
     public static void main(String[] args) throws InterruptedException {
-//        BasicConfigurator.configure();
         long start = new Date().getTime();
-
-
 
         int max = 2500;
         if (args[0] != null){
@@ -43,23 +46,25 @@ public class Main {
             bigstack = Boolean.valueOf(args[2]);
         }
 
+        int log4jVersion = 1;
+        if (args[3] != null) {
+            log4jVersion = Integer.valueOf(args[3]);
+        }
 
         List<MyTask> tasks = new ArrayList<>();
         List<Thread> ths = new ArrayList<>();
-        for ( int t=0; t < threads; t++) {
+        for (int t=0; t < threads; t++) {
 
             try {
-                MyTask task = new MyTask(t, max, bigstack);
+                MyTask task = new MyTask(t, max, bigstack, log4jVersion);
                 tasks.add(task);
-                Thread thred=new Thread(task);
+                Thread thred = new Thread(task);
                 ths.add(thred);
                 thred.start();
-            }catch (Exception e) {
-                logger.error("error executing thread", e);
+            } catch (Exception e) {
+                logError(1, "error executing thread");
             }
         }
-
-
 
         while( !isAllThreadsTerminateds(ths) ) {
             Thread.sleep(300);
@@ -72,8 +77,6 @@ public class Main {
 
 
         printReport(max, threads, bigstack, finalDuration);
-//                logger.debug("Messages: " + max);
-//        logger.debug("Threads: " + threads);
     }
 
     private static void printReport(int max, int threads, boolean bigstack, long finalDuration) {
@@ -128,32 +131,35 @@ public class Main {
 
     protected static class MyTask implements Runnable {
 
-        public static final Logger logger = Logger.getLogger(MyTask.class);
 //        public static final Logger logger = LogManager.getLogger(MyTask.class);
 
         int max;
         long duration = 0;
         int id;
         boolean bigstack;
-        public MyTask(int id, int max, boolean bigstack){
+        int log4jVersion;
+
+        public MyTask(int id, int max, boolean bigstack, int log4jVersion){
             this.id = id;
             this.max = max;
             this.bigstack = bigstack;
+            this.log4jVersion = log4jVersion;
         }
+
         @Override
         public void run() {
             Exception e;
+
             if (bigstack) {
                 e = createMyTerribleException();
-            }else {
+            } else {
                 e = new RuntimeException("short stacktrace");
             }
 
 //            logger.debug("Start: " + max);
             long time = new Date().getTime();
             for (int i = 0; i < max; i++) {
-                logger.error("error testing log asdfgasdfgasdfgasdf", e);
-//                logger2.error("error testing log asdfgasdfgasdfgasdf", e);
+                logError(this.log4jVersion, "error testing log asdfgasdfgasdfgasdf");
                 int m = i % PRINT_THREAD_COUNT_MSG;
                 if ( m == 0  ){
                     System.out.println("t: " + id + ", " + i);
