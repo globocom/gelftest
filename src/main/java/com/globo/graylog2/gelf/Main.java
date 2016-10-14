@@ -17,7 +17,9 @@ public class Main {
     static final int PRINT_THREAD_COUNT_MSG = 10000;
 
     public static final org.apache.log4j.Logger log4j1Logger = org.apache.log4j.Logger.getLogger(Main.class);
-    public static final org.apache.logging.log4j.Logger log4j2Logger = org.apache.logging.log4j.LogManager.getLogger(Main.class);
+    public static final org.apache.log4j.Logger log4j2Logger = org.apache.log4j.Logger.getLogger(Main.class);
+//    public static final org.apache.logging.log4j.Logger log4j2Logger = org.apache.logging.log4j.LogManager.getLogger(Main.class);
+//    public static final org.apache.logging.log4j.Logger log4j1Logger = org.apache.logging.log4j.LogManager.getLogger(Main.class);
 
     public static void logError(int log4jVersion, String msg) {
         if (log4jVersion == 1) {
